@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1f3d">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<!-- Server should generate this token per session and validate it on every POST -->
+<meta name="csrf-token" content="REPLACE_WITH_SERVER_GENERATED_TOKEN">
+<title>Create account | Attachment & Internship Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="register.css">
+<link rel="stylesheet" href="register-polish.css">
+</head>
+<body class="solo">
+<main class="page solo">
+  <section class="wizard">
+
+    <aside class="side">
+      <!-- LOGO: put your logo file at  images/logo.png  (same folder as this page, inside an "images" folder).
+           To use a different file name or type, change the src below, e.g. images/my-logo.svg.
+           It sits on a white tile, so its true colours always show on the blue. -->
+      <div class="logo-tile">
+        <img src="images/coat-of-arms.jpg" alt="Organisation logo">
+        <svg class="logo-fallback" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      </div>
+      <h2>Create your account</h2>
+      <p class="side-sub">It only takes a few minutes.</p>
+      <ol class="steps" id="steps" aria-label="Registration progress">
+        <li class="on"><b>1</b><span><span class="t">Personal details</span><span class="d">Name, ID and contact</span></span></li>
+        <li><b>2</b><span><span class="t">Attachment details</span><span class="d">University, department, period</span></span></li>
+        <li><b>3</b><span><span class="t">Secure your account</span><span class="d">Email and password</span></span></li>
+        <li><b>4</b><span><span class="t">Verify your email</span><span class="d">Enter the code we send</span></span></li>
+      </ol>
+      <p class="side-foot">Already have an account? <a href="login.html">Log in</a></p>
+    </aside>
+
+    <div class="pane">
+
+      <!-- Step 1: personal details -->
+      <form class="view show" id="v-s1" novalidate>
+        <p class="stepno">Step 1 of 4</p>
+        <h1>Personal details</h1>
+        <p class="sub">Enter your details as they appear on your ID. All fields are required.</p>
+
+        <div class="field" id="f-fullname">
+          <label for="fullname">Full name</label>
+          <input type="text" id="fullname" required aria-describedby="e-fullname" name="name" placeholder="First and last name" autocomplete="name">
+          <p class="fe" id="e-fullname" role="alert"></p>
+        </div>
+
+        <div class="row2">
+          <div class="field" id="f-idno">
+            <label for="idno">ID number</label>
+            <input type="text" id="idno" required aria-describedby="e-idno" name="idno" placeholder="e.g. 12345678" inputmode="numeric" autocomplete="off" maxlength="10">
+            <p class="fe" id="e-idno" role="alert"></p>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone" required aria-describedby="e-phone" name="phone" placeholder="0712 345 678" inputmode="tel" autocomplete="tel">
+            <p class="fe" id="e-phone" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="field" id="f-gender">
+          <span class="lbl" id="genderLabel">Gender</span>
+          <div class="seg seg3" role="radiogroup" aria-labelledby="genderLabel" aria-required="true" aria-describedby="e-gender">
+            <label><input type="radio" name="gender" value="Male" required><span>Male</span></label>
+            <label><input type="radio" name="gender" value="Female" required><span>Female</span></label>
+            <label><input type="radio" name="gender" value="Prefer not to say" required><span>Prefer not to say</span></label>
+          </div>
+          <p class="fe" id="e-gender" role="alert"></p>
+        </div>
+
+        <p class="msg" id="m0" role="alert"></p>
+        <button class="btn" type="submit">Continue</button>
+        <p class="foot only-mobile">Already have an account? <a class="ul" href="login.html">Log in</a></p>
+      </form>
+
+      <!-- Step 2: attachment details -->
+      <form class="view" id="v-s2" novalidate>
+        <p class="stepno">Step 2 of 4</p>
+        <h1>Attachment details</h1>
+        <p class="sub">Tell us where you study, where you'll be placed and for how long.</p>
+
+        <div class="field" id="f-university">
+          <label for="university">University or institution</label>
+          <div class="combo" id="combo">
+            <input type="text" id="university" name="university" required role="combobox" aria-expanded="false" aria-controls="uniList" aria-autocomplete="list" aria-describedby="e-university" placeholder="Select from the list or type yours" autocomplete="off" maxlength="100">
+            <button type="button" class="combo-btn" id="uniBtn" aria-label="Show list of universities" tabindex="-1"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button>
+            <ul class="combo-list" id="uniList" role="listbox" aria-label="Kenyan universities" hidden></ul>
+          </div>
+          <p class="hint">Not listed? Just type the full name of your institution.</p>
+          <p class="fe" id="e-university" role="alert"></p>
+        </div>
+
+        <div class="row2">
+          <div class="field" id="f-department">
+            <label for="department">Department</label>
+            <!-- Replace these options with your institution's departments -->
+            <select id="department" name="department" required aria-describedby="e-department" autocomplete="off">
+              <option value="" disabled selected hidden>Select department</option>
+              <option>Information &amp; Communication Technology</option>
+              <option>Finance &amp; Accounts</option>
+              <option>Human Resources</option>
+              <option>Marketing &amp; Communications</option>
+              <option>Procurement &amp; Supply Chain</option>
+              <option>Operations</option>
+              <option>Administration</option>
+              <option>Customer Service</option>
+              <option>Legal &amp; Compliance</option>
+              <option>Research &amp; Planning</option>
+              <option>Other</option>
+            </select>
+            <p class="fe" id="e-department" role="alert"></p>
+          </div>
+          <div class="field" id="f-study">
+            <label for="study">Area of study</label>
+            <input type="text" id="study" required aria-describedby="e-study" name="study" placeholder="e.g. Computer Science" autocomplete="off">
+            <p class="fe" id="e-study" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="field" id="f-type">
+          <span class="lbl" id="typeLabel">I am registering as</span>
+          <div class="seg" role="radiogroup" aria-labelledby="typeLabel" aria-required="true" aria-describedby="e-type">
+            <label><input type="radio" name="type" value="attachee" required><span>Attachee</span></label>
+            <label><input type="radio" name="type" value="intern" required><span>Intern</span></label>
+          </div>
+          <p class="fe" id="e-type" role="alert"></p>
+        </div>
+
+        <div class="row2">
+          <div class="field" id="f-startDate">
+            <label for="startDate">Period: start date</label>
+            <input type="date" id="startDate" required aria-describedby="e-startDate">
+            <p class="fe" id="e-startDate" role="alert"></p>
+          </div>
+          <div class="field" id="f-endDate">
+            <label for="endDate">Period: end date</label>
+            <input type="date" id="endDate" required aria-describedby="e-endDate">
+            <p class="fe" id="e-endDate" role="alert"></p>
+          </div>
+        </div>
+        <p class="hint-line" id="duration" aria-live="polite"></p>
+
+        <p class="msg" id="m0b" role="alert"></p>
+        <div class="btnrow">
+          <button class="btn btn-ghost" type="button" id="back2">Back</button>
+          <button class="btn" type="submit">Continue</button>
+        </div>
+      </form>
+
+      <!-- Step 3: email, password, consent -->
+      <form class="view" id="v-s3" novalidate>
+        <p class="stepno">Step 3 of 4</p>
+        <h1>Secure your account</h1>
+        <p class="sub">We'll email you a code to confirm the address is yours.</p>
+
+        <div class="group">
+          <p class="group-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Sign-in email</p>
+          <div class="field" id="f-email">
+            <label for="email">Email address</label>
+            <input type="text" id="email" required aria-describedby="e-email" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+            <p class="fe" id="e-email" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="group">
+          <p class="group-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Create a password</p>
+
+          <div class="field" id="f-np">
+            <label for="np">Password</label>
+            <div class="pw-box">
+              <input type="password" id="np" required aria-describedby="e-np" name="new-password" placeholder="12+ characters" autocomplete="new-password">
+              <button type="button" class="toggle" data-for="np" aria-pressed="false">Show</button>
+            </div>
+          </div>
+
+          <div class="meter" id="meter" data-l="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <p class="meter-label" id="meterLabel" aria-live="polite">Password strength</p>
+
+          <ul class="rules" id="rules">
+            <li data-r="len">12 or more characters</li>
+            <li data-r="upper">An uppercase letter</li>
+            <li data-r="lower">A lowercase letter</li>
+            <li data-r="num">A number</li>
+            <li data-r="sym">A symbol, like ! or #</li>
+          </ul>
+          <p class="fe fe-solo" id="e-np" role="alert"></p>
+
+          <div class="field" id="f-cp">
+            <label for="cp">Confirm password</label>
+            <div class="pw-box">
+              <input type="password" id="cp" required aria-describedby="e-cp" name="confirm-password" placeholder="Type it again" autocomplete="new-password">
+              <button type="button" class="toggle" data-for="cp" aria-pressed="false">Show</button>
+            </div>
+            <p class="fe" id="e-cp" role="alert"></p>
+          </div>
+
+          <p class="warn" id="caps" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9.5 17h-19L12 3z"/><path d="M12 10v4"/><path d="M12 17.5v.01"/></svg>
+            <span>Caps Lock is on. Passwords are case-sensitive.</span>
+          </p>
+        </div>
+
+        <div class="field" id="f-consent">
+          <label class="chk consent"><input type="checkbox" id="consent" name="consent" required aria-describedby="e-consent"> <span>I agree to the <a class="ul" href="terms.html" target="_blank" rel="noopener noreferrer">Terms of use</a> and <a class="ul" href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy notice</a>, and consent to my details, including my gender, being processed for my attachment or internship.</span></label>
+          <p class="fe" id="e-consent" role="alert"></p>
+        </div>
+
+        <!-- Bot trap: real people never see or fill this -->
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+        <p class="msg" id="m1" role="alert"></p>
+        <div class="btnrow">
+          <button class="btn btn-ghost" type="button" id="back">Back</button>
+          <button class="btn" type="submit" id="b1">Create account</button>
+        </div>
+      </form>
+
+      <!-- Step 4: verify email -->
+      <form class="view" id="v-verify" novalidate>
+        <p class="stepno">Step 4 of 4</p>
+        <h1>Verify your email</h1>
+        <p class="sub">We've sent a 6-digit code to <strong id="sentTo"></strong>. Check your spam folder too.</p>
+
+        <div class="otp" id="otp" role="group" aria-label="6-digit code"></div>
+        <p class="expiry">Code expires in <span id="expires">10:00</span></p>
+
+        <p class="msg" id="m2" role="alert"></p>
+        <button class="btn" type="submit" id="b2">Verify and finish</button>
+        <p class="foot">Didn't get it? <button type="button" class="ul linkbtn" id="resend">Resend code</button></p>
+        <p class="foot"><button type="button" class="ul linkbtn" id="change">Wrong email? Go back and change it</button></p>
+      </form>
+
+      <!-- Done -->
+      <div class="view done" id="v-done">
+        <div class="done-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h1>Account created</h1>
+        <p class="sub">Welcome aboard. Your account is ready.</p>
+        <dl class="recap">
+          <div><dt>Name</dt><dd id="rName"></dd></div>
+          <div><dt>University</dt><dd id="rUni"></dd></div>
+          <div><dt>Registered as</dt><dd id="rType"></dd></div>
+          <div><dt>Department</dt><dd id="rDept"></dd></div>
+          <div><dt>Period</dt><dd id="rPeriod"></dd></div>
+        </dl>
+        <a class="btn btn-link" href="login.html">Go to login</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+<script src="register.js"></script>
+</body>
+</html>
