@@ -1,0 +1,82 @@
+/* Extra styles for the forgot-password page. Shares style.css with the login page. */
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+strong{color:var(--ink);font-weight:600;word-break:break-all}
+
+.btn-link{display:block;text-align:center;text-decoration:none;line-height:1.6;margin-top:6px}
+.btn-link:hover{color:var(--white)}
+.linkbtn:disabled{color:var(--text);cursor:default;text-decoration:none}
+
+.expiry{font-size:.8125rem;color:var(--text);margin:-2px 0 14px}
+.expiry span{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* Strength meter */
+.meter{display:flex;gap:6px;margin:-4px 0 6px}
+.meter i{flex:1;height:4px;border-radius:4px;background:#e3e8f0;transition:background .2s}
+.meter[data-l="1"] i:nth-child(-n+1){background:#b42318}
+.meter[data-l="2"] i:nth-child(-n+2){background:#b7791f}
+.meter[data-l="3"] i:nth-child(-n+3){background:var(--accent)}
+.meter[data-l="4"] i:nth-child(-n+4){background:#17794a}
+.meter-label{font-size:.75rem;color:var(--text);margin-bottom:12px}
+
+/* Live requirements checklist */
+.rules{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-bottom:18px}
+.rules li{position:relative;text-align:left;padding-left:22px;font-size:.78rem;line-height:1.35;color:var(--text);transition:color .15s}
+.rules li:last-child{grid-column:1 / -1}
+.rules li::before{content:"";position:absolute;left:0;top:1px;width:14px;height:14px;border-radius:50%;border:1.5px solid #b8c2d4;background:var(--white);transition:all .15s}
+.rules li.met{color:var(--ink)}
+.rules li.met::before{background:var(--ink);border-color:var(--ink)}
+.rules li.met::after{content:"";position:absolute;left:4.5px;top:4.5px;width:4px;height:7px;border:solid var(--white);border-width:0 1.8px 1.8px 0;transform:rotate(45deg) scale(.9);transform-origin:center;margin-top:-2px}
+
+.btn[disabled]{background:#9aa6bd}
+
+@media(max-width:760px){
+  .rules{grid-template-columns:1fr}
+  .rules li{font-size:.8125rem}
+  .btn-link{padding-top:13px}
+}
+
+/* ---------- Single centred card (no split screen) ---------- */
+body.solo{background:var(--bg)}
+.card.solo{display:block;max-width:440px;min-height:0}
+.card.solo .panel{margin:0;border-radius:0;padding:36px 36px 32px;display:block}
+
+@media(max-width:760px){
+  .page.solo{display:grid;place-items:center;padding:16px;min-height:100vh;min-height:100dvh}
+  .card.solo{display:block;min-height:0;max-width:440px;border:1px solid #e3e8f0;border-radius:14px;
+    box-shadow:0 1px 2px rgba(15,31,61,.04),0 12px 32px rgba(15,31,61,.07)}
+  .card.solo .panel{padding:26px 20px calc(24px + env(safe-area-inset-bottom))}
+}
+
+/* ---------- Success screen ---------- */
+.panel[data-view="done"] .brand{display:none}
+.done{text-align:center;padding:4px 0 0}
+.done-icon{width:64px;height:64px;border-radius:50%;background:#e7f5ee;color:#17794a;display:grid;place-items:center;margin:0 auto 20px;box-shadow:0 0 0 8px #f3faf6}
+.done h1{font-size:1.4rem}
+.done .sub{max-width:34ch;margin:6px auto 22px}
+.summary{list-style:none;padding:0;margin:0 0 22px;text-align:left;border:1px solid #e3e8f0;border-radius:10px;overflow:hidden}
+.summary li{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:.8125rem;color:var(--ink);border-bottom:1px solid #eef1f6}
+.summary li:last-child{border-bottom:0}
+.summary svg{flex:none;color:#17794a}
+.done .btn-link{margin-top:0}
+
+/* Load AFTER style.css and auth.css. Adds the logo and polish for the forgot-password page. */
+
+.card.solo{max-width:460px;border-radius:16px;overflow:visible;box-shadow:0 1px 2px rgba(15,31,61,.04),0 16px 40px rgba(15,31,61,.10)}
+.card.solo .panel{border-radius:16px}
+
+/* Logo: same size as on the register page (change --logo-h to resize both the same way) */
+.panel .brand{display:flex;justify-content:center;margin:0 0 16px}
+.logo-tile{--logo-h:64px;flex:none;display:grid;place-items:center;height:auto;min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.logo-tile img{display:block;width:auto;height:auto;max-width:150px;background:transparent;max-height:calc(var(--logo-h) - 12px);object-fit:contain;filter:none;mix-blend-mode:normal;opacity:1}
+.logo-tile svg{width:38px;height:38px;color:#0f1f3d}
+.logo-tile [hidden]{display:none}
+
+
+/* Centred headings; form fields stay left-aligned */
+.view:not(.done) h1,.view:not(.done) > .sub{text-align:center}
+.view:not(.done) > .sub{margin-left:auto;margin-right:auto;max-width:38ch}
+
+/* Checklist ticks: drawn as an SVG so they are perfectly centred */
+.rules li.met::after{content:none}
+.rules li.met::before{background:var(--ink,#0f1f3d) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/9px no-repeat;border-color:var(--ink,#0f1f3d)}
