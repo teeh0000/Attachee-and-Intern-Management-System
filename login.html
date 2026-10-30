@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1f3d">
+<meta name="referrer" content="no-referrer">
+<!-- Content Security Policy: only this site's own scripts run, so injected scripts are blocked.
+     Also send the same policy as an HTTP header from the server, and add frame-ancestors 'none' there (it only works as a header). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<title>Login | Attachment & Internship Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+  <section class="card">
+
+    <div class="visual" aria-hidden="true">
+      <img src="images/login-image.jpg" alt="">
+    </div>
+
+    <div class="panel">
+
+       <div class="brand brand-center">
+  <img class="logo-img" src="images/coat-of-arms.jpg" alt="Your organisation name">
+</div>
+
+    <noscript><p class="msg">JavaScript must be turned on to sign in.</p></noscript>
+
+    <!-- Login view -->
+    <form class="view show" id="v-login" method="post" novalidate>
+      <h1>Login to your account</h1>
+      <p class="sub">Register and manage your attachment or internship.</p>
+
+      <div class="field" id="f-id">
+        <label for="identifier">Email or ID number</label>
+        <input type="text" id="identifier" name="identifier" placeholder="you@example.com" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="254" required>
+      </div>
+
+      <div class="field" id="f-pw">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" autocomplete="current-password" maxlength="128" required>
+        <button type="button" class="toggle" id="tg" aria-pressed="false">Show</button>
+      </div>
+
+      <p class="warn" id="caps" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9.5 17h-19L12 3z"/><path d="M12 10v4"/><path d="M12 17.5v.01"/></svg>
+        <span>Caps Lock is on. Passwords are case-sensitive.</span>
+      </p>
+      <p class="msg" id="m1" role="alert"></p>
+
+      <div class="opts">
+        <label class="chk"><input type="checkbox" id="remember" name="remember"> <span>Remember me</span></label>
+        <a class="ul" href="forgot-password.html">Forgot password?</a>
+      </div>
+
+      <button class="btn" type="submit" id="b1">Login</button>
+
+      <p class="foot">Not registered yet? <a class="ul" href="register.html">Create an account</a></p>
+    </form>
+
+    <!-- Code view (shown only when the server asks for it, e.g. admin accounts) -->
+    <form class="view" id="v-otp" method="post" novalidate>
+      <h1>Enter your code</h1>
+      <p class="sub">We sent a 6-digit code to your email. It expires in 5 minutes.</p>
+      <div class="otp" id="otp" role="group" aria-label="6-digit code"></div>
+      <p class="msg" id="m2" role="alert"></p>
+      <button class="btn" type="submit" id="b2">Verify and login</button>
+      <p class="foot">No code? <button type="button" class="ul linkbtn" id="resend">Send a new code</button></p>
+      <p class="foot"><button type="button" class="ul linkbtn" id="back">Back to login</button></p>
+    </form>
+
+    <!-- Success view -->
+    <div class="view ok" id="v-ok" role="status" aria-live="polite">
+      <div class="ok-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h1>Login successful</h1>
+      <p class="sub" id="dest"></p>
+      <a class="btn btn-link" id="go" href="#">Continue</a>
+    </div>
+
+    <nav class="legal" aria-label="Legal and help">
+      <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy notice</a>
+      <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of use</a>
+      <a href="mailto:support@example.com?subject=Login%20help">Contact</a>
+    </nav>
+
+      </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
